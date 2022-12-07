@@ -53,20 +53,14 @@ public class User implements UserDetails  {
                 String username,
                 String email,
                 String password,
-                String name,
-                String lastname,
                 Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
-        this.name = name;
-        this.lastname = lastname;
     }
 
-    public User(Long id, String username, String email, String password, List<GrantedAuthority> authorities) {
-    }
 
     @PrePersist
     protected void onCreate ()
