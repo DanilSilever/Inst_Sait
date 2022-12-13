@@ -9,16 +9,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
 @Data
 @Entity
-
-public class Post
-{
+public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String title;
     private String caption;
     private String location;
@@ -27,10 +23,16 @@ public class Post
     @Column
     @ElementCollection(targetClass = String.class)
     private Set<String> likedUsers = new HashSet<>();
+
     @ManyToOne (fetch = FetchType.LAZY)
     private User user;
+
     @OneToMany (cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "post", orphanRemoval = true)
     private List<Comment>  comments = new ArrayList<>();
+
+    @ManyToMany (cascade = CascadeType.ALL, mappedBy = "post")
+    private List<Category> categories = new ArrayList<>();
+
     @Column (updatable = false)
 
     private LocalDateTime createdDate;

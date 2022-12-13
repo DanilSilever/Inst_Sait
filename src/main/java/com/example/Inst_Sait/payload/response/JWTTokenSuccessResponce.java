@@ -8,4 +8,5 @@ import lombok.Data;
 public class JWTTokenSuccessResponce {
     private boolean success;
     private String token;
+
 }
